@@ -1,0 +1,41 @@
+def Adad(x):
+    Tak = ["", "Yek", "Do", "Se", "Chahar", "Panj", "Shesh", "Haft", "Hasht", "Noh"]
+    Dahha = ["Dah", "Yazdah", "Davazdah", "Sizdah", "Chahardah", "Panzdah", "Shanzdah", "Hefdah", "Hejdah", "Nozdah"]
+    Joftha = ["", "", "Bist", "Si", "Chehel", "Panjah", "Shast", "Haftad", "Hashtad", "Navad"]
+    Sadegan = ["", "Sad", "Devist", "Sisad", "Chaharsad", "Pansad", "Sheshsad", "Haftsad", "Hashtsad", "Nohsad"]
+    # Ehtiyaji be neveshtan sad, hezar va ... nist chon toye string ejra mikonim.
+
+    if x > 0 and x < 10:
+        return Tak[x]
+    elif x < 0:
+        return ("Serfan adad zoj")
+    elif x < 20:
+        return Dahha[x - 10]
+    elif x < 100:
+        return Joftha[x // 10] + (" O " + Tak[x % 10]if x % 10 else "")
+    elif x < 1000:
+        return Sadegan[x // 100] + (" O " + Adad(x % 100)if x % 100 else "")
+    elif x < 1000000:
+        #return Adad(x // 1000) + " Hezar" + (" O " + Adad(x % 1000)if x != 0 else "") made a bug so I removed !=0
+        return Adad(x // 1000) + " Hezar" + (" O " + Adad(x % 1000) if x % 1000 else "")
+    elif x < 1000000000:
+        return Adad(x // 1000000) + " Milion" + (" O " + Adad(x % 1000000)if x%1000000 else "")
+    elif x < 1000000000000:
+        return Adad(x // 1000000000) + " Milyard" + (" O " + Adad(x % 1000000000)if x % 1000000000 else "")
+
+
+def Run():
+    while True:
+        try:
+            x = int(input("Tabdil Adad be Horof (Khoroj ba 0)→→→→→"))
+            if x == 0:
+                break
+            else:
+                print(Adad(x))
+        except ValueError:
+            print("Shoma Serfan Mojaz Be Type Kardan Adad bedone ashar hastid.")
+        except IndexError:
+            print("Serfan Adad haye zoj")
+
+
+Run()
